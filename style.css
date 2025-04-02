@@ -1,0 +1,155 @@
+:root {
+    --color-primary: #8527c3fd;
+    --color-primary-soft: #8527c383;
+    --color-primary-dark: #5f1192;  /* Nuevo color para hover */
+    --color-white: #fff;
+    --menu-height: 80px;
+    --transition-duration: 0.5s;
+    --table-bg: #f8f8f8;
+    --table-border: 1px solid #ddd;
+    --table-header-bg: #e9e9e9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+header.cabecer {
+    height: var(--menu-height);
+    background-color: var(--color-primary);
+    transition: background-color 0.5s ease;
+}
+
+nav.menu {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 2em;
+}
+
+#menu_burger {
+    display: none;
+}
+
+.ul_links {
+    display: flex;  /* Se cambia a flex para que se comporte como una fila normal */
+    gap: 2em;
+    justify-content: flex-end;
+    align-items: center;
+    transition: transform var(--transition-duration) ease-in-out, opacity var(--transition-duration) ease;
+}
+
+.ul_links .il_links a {
+    color: var(--color-white);
+    transition: color var(--transition-duration) ease, background-color var(--transition-duration) ease;
+}
+
+.ul_links .il_links a:hover {
+    color: var(--color-white);
+    background-color: var(--color-primary-dark); /* Color más oscuro para el hover */
+}
+
+.logo {
+    color: var(--color-white);
+}
+
+.label_burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger_icono {
+    color: var(--color-white);
+    transition: transform var(--transition-duration) ease;
+}
+
+#menu_burger:checked + .label_burger .burger_icono {
+    transform: rotate(90deg);
+}
+
+#menu_burger:checked ~ .ul_links {
+    opacity: 1;
+    transform: translateY(0);  /* Menú aparece de manera fluida */
+    max-height: 500px;
+}
+
+@media (max-width: 768px) {
+    .label_burger {
+        display: block;
+    }
+
+    .ul_links {
+        position: absolute;  /* Cambia a absolute para el menú de hamburguesa */
+        top: var(--menu-height);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 2rem;
+        background-color: var(--color-primary-soft);
+        justify-content: center;
+        align-items: center;
+        opacity: 0;  /* Inicialmente oculto */
+        transform: translateY(-20px); /* Menú desplazado hacia arriba */
+        max-height: 0; /* Menú colapsado */
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .ul_links .il_links a {
+        font-size: 2em;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 25px;
+        transition: all var(--transition-duration) ease;
+    }
+
+    .ul_links .il_links a:hover {
+        background-color: #5f1192;  /* Color de fondo para hover */
+    }
+
+    #menu_burger:checked ~ .ul_links {
+        opacity: 1;
+        transform: translateY(0); /* Menú aparece al hacer clic */
+    }
+}
+
+/* Estilos para la sección de horario */
+.horario {
+    padding: 20px;
+    text-align: center;
+}
+
+.horario .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--table-bg);
+    border: var(--table-border);
+}
+
+th, td {
+    border: var(--table-border);
+    padding: 10px;
+    text-align: center;
+}
